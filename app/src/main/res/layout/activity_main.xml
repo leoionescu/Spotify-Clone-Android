@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+        <com.sothree.slidinguppanel.SlidingUpPanelLayout
+            android:id="@+id/sliding_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:layout_marginBottom="53dp"
+            app:umanoFadeColor="@color/black"
+            app:umanoDragView="@+id/dragView"
+            app:umanoOverlay="false"
+            app:umanoPanelHeight="45dp"
+            app:umanoParallaxOffset="100dp"
+            app:umanoShadowHeight="4dp">
+
+            <fragment
+                android:id="@+id/nav_host_fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navGraph="@navigation/mobile_navigation" />
+
+            <LinearLayout
+                android:id="@+id/dragView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_strong"
+                android:clickable="true"
+                android:focusable="false"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/parent_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/play_slide_up"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="2.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_baseline_play_circle_outline_24"
+                        app:layout_constrainedWidth="true"
+                        android:backgroundTint="@color/gray_strong"
+                        android:tint="@color/white"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/change_state_slide_up"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:background="?android:selectableItemBackground"
+                        android:tint="@color/gray_strong"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@+id/queue_slide_up"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_baseline_queue_music_24"
+                        android:background="?android:selectableItemBackground"
+                        android:tint="@color/gray_strong"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:visibility="gone" />
+
+
+                <ImageButton
+                    android:id="@+id/image_slide_up"
+                    android:layout_width="35dp"
+                    app:layout_constrainedWidth="true"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/unknown"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                </ImageButton>
+
+                <TextView
+                    android:id="@+id/name_slide_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:requiresFadingEdge="horizontal"
+                    android:fadingEdgeLength="40dp"
+                    android:gravity="center_horizontal"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:textSize="25sp"
+                    android:text="Artist - Song"
+                    android:textColor="@color/white"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/image_slide_up"
+                    app:layout_constraintRight_toLeftOf="@id/play_slide_up"/>
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/player_fragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </androidx.fragment.app.FragmentContainerView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+    <View
+        android:id="@+id/black_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@+id/sliding_layout"
+        app:layout_constraintBottom_toTopOf="@+id/gray_line" />
+
+    <View
+        android:id="@+id/gray_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray_strong"
+        app:layout_constraintTop_toBottomOf="@+id/black_line"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:itemBackground="@color/gray_strong"
+        app:itemIconTint="@drawable/bottom_nav_selector"
+        app:itemTextColor="@drawable/bottom_nav_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <View
+        android:id="@+id/nav_replacer"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintBottom_toBottomOf="parent">
+
+    </com.google.android.gms.ads.AdView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

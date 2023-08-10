@@ -1,0 +1,61 @@
+{
+  "project_info": {
+    "project_number": "602627867735",
+    "firebase_url": "https://pubgmemes-cd20b.firebaseio.com",
+    "project_id": "pubgmemes-cd20b",
+    "storage_bucket": "pubgmemes-cd20b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602627867735:android:22d52158641e6bcd930f12",
+        "android_client_info": {
+          "package_name": "com.mangoplay.yeezymusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602627867735-acku31u5di8beaieo5o0nbj66i3eci3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mangoplay.yeezymusic",
+            "certificate_hash": "8e6181bdea252370cbc928d6b6ced10bba4668f7"
+          }
+        },
+        {
+          "client_id": "602627867735-es8l8mlepg1baq85m7u2k877cajvqbec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mangoplay.yeezymusic",
+            "certificate_hash": "e01cbf3c7e758053f8a47d34fd6d95b67a92b838"
+          }
+        },
+        {
+          "client_id": "602627867735-klm5uajmcd08o008oof12hqad3cirg84.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mangoplay.yeezymusic",
+            "certificate_hash": "471263f6faf40824deac4e6bb1859ef508524246"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaqse7f-QzfRwh1pJSr713T8ZMqK3907E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602627867735-27uhiv6gqavbstiouh29ejens54mu6h9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9072664626495984~8104363605"
+    }
+  ],
+  "configuration_version": "1"
+}
