@@ -35,9 +35,11 @@ import com.mangoplay.yeezymusic.services.BlurBuilder;
 import com.mangoplay.yeezymusic.services.DeezerService;
 import com.mangoplay.yeezymusic.services.LastFmService;
 import com.mangoplay.yeezymusic.services.YoutubeDataService;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.DefaultPlayerUiController;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
@@ -86,7 +88,6 @@ public class PlayerFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_player, container, false);
         System.out.println("player fragment view created");
         init(rootView);
-        addListeners(rootView);
 
         return rootView;
     }
@@ -117,13 +118,40 @@ public class PlayerFragment extends Fragment {
 //        lifecycleOwner.getLifecycle().addObserver(youTubePlayerView);
         title.setSelected(true);
         artist.setSelected(true);
-        applySettings();
+
+        // 1. Disable automatic init so we can pass custom options
+        youTubePlayerView.setEnableAutomaticInitialization(false);
+
+        // 2. Create the options with the Origin fix
+        IFramePlayerOptions options = new IFramePlayerOptions.Builder()
+                .controls(0)
+                .origin("https://com.mangoplay.yeezymusic") // Fixes 152-x errors
+                .build();
+
+        // 3. Initialize manually with your custom options
+        // We pass a dummy listener here because your real listeners
+        // are added later in the addListeners() method.
+        youTubePlayerView.initialize(new com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                player = youTubePlayer;
+                player.addListener(tracker);
+                applySettings();
+                hideControls(youTubePlayer);
+                addListeners(rootView);
+
+            }
+        }, options);
+    }
+
+    private void hideControls(@NonNull YouTubePlayer youTubePlayer) {
+        DefaultPlayerUiController uiController = new DefaultPlayerUiController(youTubePlayerView, youTubePlayer);
+        uiController.showUi(false);
+
+        youTubePlayerView.setCustomPlayerUi(uiController.getRootView());
     }
 
     public void addListeners(View rootView) {
-        youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
-            System.out.println("player ready");
-            player = youTubePlayer;
 
             try {
                 if (History.playlist.tracks.size() > 0) {
@@ -177,6 +205,7 @@ public class PlayerFragment extends Fragment {
                 e.printStackTrace();
             }
 
+            if( player == null) return;
             player.addListener(tracker);
             player.addListener(new YouTubePlayerListener() {
                 @Override
@@ -247,7 +276,6 @@ public class PlayerFragment extends Fragment {
 
                 }
             });
-        } );
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -397,7 +397,7 @@ public class PlaylistRowAdapter extends RecyclerView.Adapter<PlaylistRowAdapter.
                         System.out.println("loaded 100%");
                         MainActivity.playerFragment.setYouTubePlayerView(youTubePlayerView);
                         MainActivity.playerFragment.setPlayer(youTubePlayer);
-                        MainActivity.playerFragment.addListeners(MainActivity.playerFragment.rootView);
+//                        MainActivity.playerFragment.addListeners(MainActivity.playerFragment.rootView);
 //                            Data.saveYoutubePlayer(youTubePlayer,MainActivity.context, track.getName() + ".bin");
                         GsonBuilder gsonBuilder = new GsonBuilder();
                         gsonBuilder.addDeserializationExclusionStrategy(new SuperclassExclusionStrategy());

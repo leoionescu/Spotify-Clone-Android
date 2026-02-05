@@ -10,10 +10,6 @@ import com.mangoplay.yeezymusic.objects.ForYou;
 import com.mangoplay.yeezymusic.objects.Playlist;
 import com.mangoplay.yeezymusic.objects.Spot;
 import com.mangoplay.yeezymusic.objects.Track;
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
-import com.yuyakaido.android.cardstackview.CardStackListener;
-import com.yuyakaido.android.cardstackview.CardStackView;
-import com.yuyakaido.android.cardstackview.Direction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,49 +42,6 @@ public class TinderActivity extends AppCompatActivity {
         spots.add(new Spot("Great Wall of China", "China", "https://source.unsplash.com/AWh9C-QjhE4/600x800"));
 
         List<Track> tracks = createTrackList();
-
-        CardStackView cardStackView = findViewById(R.id.card_stack_view);
-        CardStackAdapter adapter = new CardStackAdapter(tracks);
-        cardStackView.setAdapter(adapter);
-        CardStackLayoutManager manager = new CardStackLayoutManager(getApplicationContext(), new CardStackListener() {
-            @Override
-            public void onCardDragging(Direction direction, float ratio) {
-
-            }
-
-            @Override
-            public void onCardSwiped(Direction direction) {
-
-            }
-
-            @Override
-            public void onCardRewound() {
-
-            }
-
-            @Override
-            public void onCardCanceled() {
-
-            }
-
-            @Override
-            public void onCardAppeared(View view, int position) {
-                currentPosition = position;
-                System.out.println("card appeared at position: " + position);
-                CardStackAdapter.CardStackViewHolder cardStackViewHolder = (CardStackAdapter.CardStackViewHolder) cardStackView.findViewHolderForAdapterPosition(position);
-                try {
-                    cardStackViewHolder.play();
-                } catch (NullPointerException e){
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onCardDisappeared(View view, int position) {
-                System.out.println("card disappeared at position: " + position);
-            }
-        });
-        cardStackView.setLayoutManager(manager);
     }
 
     private List<Track> createTrackList() {

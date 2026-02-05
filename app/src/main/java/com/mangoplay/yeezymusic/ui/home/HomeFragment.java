@@ -142,7 +142,7 @@ public class HomeFragment extends Fragment {
             gradientDrawable.setDither(true);
             welcome.setBackground(gradientDrawable);
 
-            refreshView = new Button(MainActivity.context);
+            refreshView = new Button(inflater.getContext());
             refreshView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -231,7 +231,7 @@ public class HomeFragment extends Fragment {
         gradientDrawable.setDither(true);
         welcome.setBackground(gradientDrawable);
 
-        refreshView = new Button(MainActivity.context);
+        refreshView = new Button(inflater.getContext());
         refreshView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,7 +253,7 @@ public class HomeFragment extends Fragment {
 
         if(forYouTracks != null) {
             RecyclerView forYou = rootView.findViewById(R.id.for_you_tracks_recycler_view);
-            forYou.setLayoutManager(new LinearLayoutManager(MainActivity.context));
+            forYou.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
             forYou.setAdapter(new PlaylistRowAdapter(forYouTracks, null));
         } else rootView.findViewById(R.id.title).setVisibility(View.GONE);
 
@@ -275,7 +275,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 System.out.println("settings clicked");
-                startActivity(new Intent(MainActivity.context, SettingsActivity.class));
+                startActivity(new Intent(inflater.getContext(), SettingsActivity.class));
             }
         });
     }
@@ -290,7 +290,7 @@ public class HomeFragment extends Fragment {
             long startT = System.currentTimeMillis();
             DeezerService.getCharts();
 
-            forYouPlaylists = ForYou.readForYouPlaylists(MainActivity.context);
+            forYouPlaylists = ForYou.readForYouPlaylists(inflater.getContext());
             if(forYouPlaylists.size() > 0) {
                 titles.add("Playlists For You");
                 homeElements.add(forYouPlaylists);
@@ -389,7 +389,7 @@ public class HomeFragment extends Fragment {
                         }
                     };
                     try {
-                        Glide.with(MainActivity.context).load(playlist.tracks.get(0).getCoverBig()).into(customTarget);
+                        Glide.with(inflater.getContext()).load(playlist.tracks.get(0).getCoverBig()).into(customTarget);
                     } catch (NullPointerException | IndexOutOfBoundsException e){
                         System.out.println("forYouPlaylists exception");
                         playlists.add(playlist);
